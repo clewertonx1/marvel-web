@@ -52,10 +52,24 @@ export default function Home() {
 
     setDataState()
 
-  },[])
+  },[offset])
+
+  function nextPage(){
+    console.log("teste")
+  }
+
+  function backPage(){
+    
+  }
+
 
   return (
-    <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignContent: 'center'}}>
+    <div style={{display: 'flex', flexDirection: 'column', flexWrap: 'wrap', justifyContent: 'center', alignContent: 'center'}}>
+      <div style={{alignItems: 'center'}}>
+        <button onClick={console.log("aaa")}>Back</button>
+        <button onClick={console.log("next")}>Back</button>
+        
+      </div>
       {data.map((d, i) =>{
         return(
           <div style={style.card}>
@@ -69,11 +83,12 @@ export default function Home() {
               }
               <h3 style={style.lastModified}>Last modified: {d.modified.substring(0, 10)}</h3>
             </div>
-            
+          
           </div>
         )
        
       })}
+      
     </div>
   )
 }
