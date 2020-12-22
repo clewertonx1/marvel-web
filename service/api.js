@@ -2,7 +2,7 @@
 import axios from 'axios';
 import gerarHash from './gerarHash'
 
-async function getData(limit){
+async function getData(offset){
     const date = new Date()
 
     const ts = date.getTime()
@@ -12,17 +12,17 @@ async function getData(limit){
 
     const hash = await gerarHash(ts + privateApiKey + publicApiKey)
 
-    const url = `http://gateway.marvel.com/v1/public/characters?&ts=${ts}&apikey=${publicApiKey}&hash=${hash}`
+    const url = `http://gateway.marvel.com/v1/public/characters?&ts=${ts}&apikey=${publicApiKey}&hash=${hash}&offset=${offset}&limit=20`
    
     const respose = await axios.get(url)
     .then(response =>{
-        const data = (response.data.data.results)
+        const data = response.data.data.results
         return data
     }).catch((err) =>{
         console.log(err)
     })
-  
-    return JSON.parse(respose)
+
+    return respose
 }
 
 export default getData
