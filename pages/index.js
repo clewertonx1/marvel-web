@@ -1,14 +1,21 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-import axios from 'axios'
+
 import {useState, useEffect} from 'react'
-
-
-
 import getData from '../service/api'
-
+import Link from 'next/link'
 
 export default function Home() {
+
+  const NavBar = () =>{
+    return(
+      <div style={{display: "flex", alignItems: 'center', flexDirection: 'row', justifyContent:'center'}}>
+        
+        <button onClick={() => backPage()}>Back</button>
+        <p style={{margin:10}}>{offset}</p>
+        <button onClick={() => nextPage()}>Next</button>
+        
+      </div>
+    )
+  }
 
   const style = {
 
@@ -40,14 +47,15 @@ export default function Home() {
     }
   }
 
-  console.log(style.main)
+
   const [data, setData] = useState([])
 
   const [offset, setOffset] = useState(0)
 
   useEffect(() => {
+    console.log("teste")
     async function setDataState(){
-      setData(await getData(0))
+      setData(await getData(offset))
     }
 
     setDataState()
@@ -55,25 +63,26 @@ export default function Home() {
   },[offset])
 
   function nextPage(){
-    console.log("teste")
+    setOffset(offset + 10)
   }
 
   function backPage(){
-    
+    if(offset === 0){
+      return
+    }
+    setOffset(offset - 10)
   }
 
 
   return (
     <div style={{display: 'flex', flexDirection: 'column', flexWrap: 'wrap', justifyContent: 'center', alignContent: 'center'}}>
-      <div style={{alignItems: 'center'}}>
-        <button onClick={console.log("aaa")}>Back</button>
-        <button onClick={console.log("next")}>Back</button>
-        
-      </div>
+    <NavBar></NavBar>
       {data.map((d, i) =>{
-        return(
+        return( 
           <div style={style.card}>
-            <img src={`${d.thumbnail.path}/portrait_fantastic.${d.thumbnail.extension}`}></img>
+            <Link href={{ pathname: '/about', query: { id: d.id } }}>
+              <img src={`${d.thumbnail.path}/portrait_fantastic.${d.thumbnail.extension}`}></img>
+            </Link>
             <div style={style.descriptionDiv}>
               <h1 style={style.title}>{d.name}</h1>
               {d.description ?
@@ -85,10 +94,11 @@ export default function Home() {
             </div>
           
           </div>
+          
         )
-       
+        
       })}
-      
+      <NavBar></NavBar>
     </div>
   )
 }
