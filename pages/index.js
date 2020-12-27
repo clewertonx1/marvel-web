@@ -18,32 +18,53 @@ export default function Home() {
   }
 
   const style = {
-
-    card:{
+    main:{
+      magin: 0,
       display: 'flex',
+      flexDirection: "row",
+      alignItems: 'center',
+      backgroundColor: '#f71b39',
+      overflow: 'auto',
+      height: "100vh",
+    },
+    card:{
       padding: 10,
-      width: "50%",
-      height: "10%",
-      backgroundColor: 'red',
-      flexDirection: 'row',
-      margin: 10,
-      borderRadius: 20,
+      display: 'block',
+      widht: 520, 
+      height: 520,
+      backgroundColor: '#dedede',
+      margin: 30,
+      borderRadius: 10,
     },
     descriptionDiv:{
-      margin: 10,
+      margin: 20,
     },
-    descriptionText:{
-      fontSize: 15,
-      color: 'white',
+    descriptionTextCard:{
+      marginTop: 5,
+      textAling: 'justify',
+      textJustify: "auto",
+      fontSize: 13,
+      color: "#424242"
+    },
+    titleCard:{
+      margin: 0,
+      fontSize: 25,
+      color: "#424242"
+    },
+    lastModifiedCard:{
+      margin: 0,
+      fontSize: 10,
+      color: "#424242"
     },
     title:{
-      fontSize: 20,
-      color: 'white', 
+      marginBottom: 0,
+      fontSize: 50,
+      color: 'white',
     },
-    lastModified:{
-      alignSelf: 'flex-end',
-      fontSize: 10,
-      color: 'white', 
+    subTitle:{
+      marginTop: 0,
+      fontSize: 30,
+      color: 'white',
     }
   }
 
@@ -75,22 +96,25 @@ export default function Home() {
 
 
   return (
-    <div style={{display: 'flex', flexDirection: 'column', flexWrap: 'wrap', justifyContent: 'center', alignContent: 'center'}}>
-    <NavBar></NavBar>
+    <div style={style.main}>
+     
       {data.map((d, i) =>{
         return( 
           <div style={style.card}>
-            <Link href={{ pathname: '/about', query: { id: d.id } }}>
-              <img src={`${d.thumbnail.path}/portrait_fantastic.${d.thumbnail.extension}`}></img>
-            </Link>
+            
+              <img src={`${d.thumbnail.path}/standard_fantastic.${d.thumbnail.extension}`}></img>
+            
             <div style={style.descriptionDiv}>
-              <h1 style={style.title}>{d.name}</h1>
+              <p style={style.lastModifiedCard}>{d.modified.substring(0, 10)}</p>
+              <h1 style={style.titleCard}>{d.name}</h1>
               {d.description ?
-                <h2 style={style.descriptionText}>{d.description}</h2>
+                <p style={style.descriptionTextCard}>{d.description}</p>
               : 
-                <h2 style={style.descriptionText} >No have description</h2>
+                <p style={style.descriptionTextCard} >No have description</p>
               }
-              <h3 style={style.lastModified}>Last modified: {d.modified.substring(0, 10)}</h3>
+              <Link href={{ pathname: '/about', query: { id: d.id } }}>
+                <p style={{fontSize: 15,marginBottom: 0, color: '#f71b39'}}>Find out more</p>
+              </Link>
             </div>
           
           </div>
@@ -98,7 +122,6 @@ export default function Home() {
         )
         
       })}
-      <NavBar></NavBar>
     </div>
   )
 }
