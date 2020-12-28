@@ -1,6 +1,46 @@
-#descritpion{
-    background-color: red;
+#descritpionDiv{
+
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+  
+    height: 220px;
 }
+   
+#lastModified{
+
+    font-size: 12px;
+    margin: 0px;
+    color: #424242;
+}
+
+#title{
+    font-size: 25px;
+    margin: 0px;
+    color: #424242;
+
+}
+#findMore{
+    font-size: 18px;
+    margin: 0px;
+    color: #f71b39;
+
+    
+    
+}
+#descriptionText{
+
+    margin-top: 10px;
+    font-size: 13px;
+    margin: 0px;
+    color: #424242;
+
+    margin-bottom: auto;
+}
+
+
+
+
 #main{
     display: flex;
     flex-direction: row;
@@ -21,6 +61,7 @@
     justify-content: center;
 }
 #card{
+    
     margin: 30px;
     padding: 10px;
     width: 270px;
@@ -30,23 +71,19 @@
     
 }
 
-#arrowIcon{
-    color: red;
-}
-
 #navbar{
     display: flex;
     justify-content: center;
     background-color: rgb(233, 233, 233);
-    width: 80px;
     border-radius: 15px;
     margin-bottom: 40px;
+    
 }
 #icon{
 
-    font-size: 60px;
+    font-size: 35px;
     color: #f71b39; 
-    margin: 0px;
+    margin: 10px;
 }
 
 
