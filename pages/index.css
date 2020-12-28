@@ -1,0 +1,52 @@
+#descritpion{
+    background-color: red;
+}
+#main{
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+    height: 100vh;
+    flex-wrap: wrap;
+    background-color: #f71b39;
+    margin: 20;
+    justify-content: center;
+    
+
+ 
+}
+#cards{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+#card{
+    margin: 30px;
+    padding: 10px;
+    width: 270px;
+    height: 520px;
+    background-color: rgb(233, 233, 233);
+    border-radius: 10px;
+    
+}
+
+#arrowIcon{
+    color: red;
+}
+
+#navbar{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(233, 233, 233);
+    width: 80px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+}
+#icon{
+
+    font-size: 60px;
+    color: #f71b39; 
+    margin: 0px;
+}
+
+

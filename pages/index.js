@@ -2,17 +2,16 @@
 import {useState, useEffect} from 'react'
 import getData from '../service/api'
 import Link from 'next/link'
+import {HiOutlineArrowCircleDown} from 'react-icons/hi'
+import { Button } from 'react-bootstrap';
+
 
 export default function Home() {
 
   const NavBar = () =>{
     return(
-      <div style={{display: "flex", alignItems: 'center', flexDirection: 'row', justifyContent:'center'}}>
-        
-        <button onClick={() => backPage()}>Back</button>
-        <p style={{margin:10}}>{offset}</p>
-        <button onClick={() => nextPage()}>Next</button>
-        
+      <div onClick={() => nextPage()} id={"navbar"}>
+          <HiOutlineArrowCircleDown  id={'icon'}></HiOutlineArrowCircleDown>
       </div>
     )
   }
@@ -74,37 +73,44 @@ export default function Home() {
   const [offset, setOffset] = useState(0)
 
   useEffect(() => {
-    console.log("teste")
+    console.log("uma vez")
     async function setDataState(){
-      setData(await getData(offset))
+      let a = await getData(offset)
+      setData(a)
     }
-
     setDataState()
-
+  },[])
+  useEffect(() => {
+    console.log("offset")
+    async function setDataState(){
+      let a = await getData(offset)
+      setData(data.concat(a))
+    }
+    setDataState()
   },[offset])
 
   function nextPage(){
-    setOffset(offset + 10)
+    setOffset(offset + 20)
   }
 
   function backPage(){
     if(offset === 0){
       return
     }
-    setOffset(offset - 10)
+    setOffset(offset - 20)
   }
 
 
   return (
-    <div style={style.main}>
-     
+    <div id={'main'}>
+      <div id={'cards'}>
       {data.map((d, i) =>{
         return( 
-          <div style={style.card}>
+          <div id={"card"}>
             
               <img src={`${d.thumbnail.path}/standard_fantastic.${d.thumbnail.extension}`}></img>
             
-            <div style={style.descriptionDiv}>
+            <div id={"description"}>
               <p style={style.lastModifiedCard}>{d.modified.substring(0, 10)}</p>
               <h1 style={style.titleCard}>{d.name}</h1>
               {d.description ?
@@ -116,12 +122,13 @@ export default function Home() {
                 <p style={{fontSize: 15,marginBottom: 0, color: '#f71b39'}}>Find out more</p>
               </Link>
             </div>
-          
-          </div>
-          
-        )
-        
+          </div>  
+        ) 
       })}
+      </div>
+   
+        <NavBar></NavBar>
+
     </div>
   )
 }
