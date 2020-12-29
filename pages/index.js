@@ -2,6 +2,8 @@
 import {useState, useEffect, useRef}from 'react'
 import getData from '../service/api'
 import Link from 'next/link'
+import MyLoader from './components/loandig'
+
 
 
 export default function Home() {
@@ -41,18 +43,17 @@ export default function Home() {
  
 
   useEffect(() => {
-    setShowLoading(true)
-    
     async function setDataState(){
       let response = await getData(offset)
       setData(data.concat(response))
+      setShowLoading(false)
     }
 
     if(schrollRadio > 0 && data !== []){
+      setShowLoading(true)
       nextPage()
       setDataState()
     }
-    setShowLoading(false)
   },[schrollRadio])
 
   function nextPage(){
@@ -63,34 +64,42 @@ export default function Home() {
 
   return (
     <div id={'main'}>
-      <div id={'cards'}>
-      {data.map((d, i) =>{
-        return( 
-          <div id={"card"}>
-            
-              <img src={`${d.thumbnail.path}/standard_fantastic.${d.thumbnail.extension}`}></img>
-
-            <div id={"descritpionDiv"}>
-              <p id={"lastModified"}>{d.modified.substring(0, 10)}</p>
-              <h1 id={"title"}>{d.name}</h1>
-              {d.description ?
-                <p id={"descriptionText"}>{d.description}</p>
-              : 
-                <p id={"descriptionText"}></p>
-              }
-              <Link href={{ pathname: '/about', query: { id: d.id } }}>
-                <h2  id={"findMore"}>Find out more</h2>
-              </Link>
-            </div>
-          </div>  
-        )})}
-      </div> 
-      <div ref={schrollObserve}></div>
-      {showLoadign ? 
-        <h1>loadding</h1> 
-      :
-        <h1></h1>
-      }
+        <div id={'cards'}>
+          {data.map((d, i) =>{
+            return( 
+                <div id={"card"}>   
+                  <img src={`${d.thumbnail.path}/standard_fantastic.${d.thumbnail.extension}`}></img>
+                  <div id={"descritpionDiv"}>
+                    <p id={"lastModified"}>{d.modified.substring(0, 10)}</p>
+                    <h1 id={"title"}>{d.name}</h1>
+                    {d.description ?
+                      <p id={"descriptionText"}>{d.description}</p>
+                    : 
+                      <p id={"descriptionText"}></p>
+                    }
+                    <Link href={{ pathname: '/about', query: { id: d.id } }}>
+                      <h2  id={"findMore"}>Find out more</h2>
+                    </Link>
+                  </div>    
+                </div> 
+            )})}
+            {showLoadign ?
+               <div id={'cards'}>
+                {Array(5).fill().map((d, i) =>{
+                  return( 
+                    <div id={"card"}> 
+                      <MyLoader></MyLoader>
+                    </div>
+                )})}
+             </div>
+             :
+              <></>
+            }
+      </div>
+       
+      
+      <div ref={schrollObserve}>AAA</div>
+      
     </div>
   )
 }
