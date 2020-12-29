@@ -83,15 +83,13 @@
 
 .search{
     flex: 0.25;
-    margin: 2%;
-    margin-left:auto;
-    margin-right: 8%;
-    height: 50px;
+    margin: 2%;    
+    height: 5%;
     border-radius: 10px;
     border-width: 0;
     background-color: white;
-    align-self: flex-end;
-    
+    font-size: 20px;
+    text-align: center;
 }
 
 .search:focus{
