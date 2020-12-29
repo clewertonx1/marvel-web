@@ -64,7 +64,6 @@ export default function Home() {
       :
       null
       }
-         
       <div ref={schrollObserve}></div>    
     </div>
   )

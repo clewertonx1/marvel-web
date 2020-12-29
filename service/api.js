@@ -14,9 +14,9 @@ async function getData(offset, id){
 
     var url = ''
     if(id){
-        url = `http://gateway.marvel.com/v1/public/characters/${id}/comics?&ts=${ts}&apikey=${publicApiKey}&hash=${hash}&offset=${offset}&limit=20`
+        url = `https://gateway.marvel.com/v1/public/characters/${id}/comics?&ts=${ts}&apikey=${publicApiKey}&hash=${hash}&offset=${offset}&limit=20`
     }else{
-        url = `http://gateway.marvel.com/v1/public/characters?&ts=${ts}&apikey=${publicApiKey}&hash=${hash}&offset=${offset}&limit=20`
+        url = `https://gateway.marvel.com/v1/public/characters?&ts=${ts}&apikey=${publicApiKey}&hash=${hash}&offset=${offset}&limit=20`
     }
     
     
