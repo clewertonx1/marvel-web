@@ -1,11 +1,16 @@
 
 import {useState, useEffect, useRef}from 'react'
-import getData from '../service/api'
+
+
+import {searchHeros, serachHerosByName } from '../service/api'
+
 import LoadingCard from '../components/loandig'
 import Card from '../components/card'
 import InputSearch from '../components/inputSearch'
 
 export default function Home() {
+
+  const [inputSearchValue, setInputSearchValue] = useState("")
 
   const [showLoadign, setShowLoading] = useState(false)
 
@@ -31,33 +36,45 @@ export default function Home() {
   },[])
   
   useEffect(() => {
-    async function setDataState(){
-      let response = await getData(offset)
-      setData(data.concat(response))
-      setShowLoading(false)
+    async function teste(){
+      const response = await searchHeros(offset)
+      return response
     }
-
-    if(schrollRadio > 0 && data !== []){
+    if(schrollRadio > 0 && data != []){
       setShowLoading(true)
-      loadMoreData()
-      setDataState()
+     
+      console.log( teste())
+      nextPage()
     }
+    
+      
+  
   },[schrollRadio])
 
-  function loadMoreData(){
+  useEffect(() => {
+    if(inputSearchValue != ""){
+      setOffset(0)
+      setShowLoading(true)
+      const name = inputSearchValue
+      const response = serachHerosByName(offset, name)
+    }
+
+  },[inputSearchValue])
+
+  function nextPage(){
     setOffset(offset + 20)
   }
 
   return (
     <div className={'main'}>
-      <InputSearch></InputSearch>
-      <div class={'cards'}>
+      <InputSearch setInputSearchValue={setInputSearchValue} inputSearchValue={inputSearchValue}></InputSearch>
+      <div className={'cards'}>
         {data.map((data, index) => (
           <Card data={data}/>
         ))}
       </div>  
     {showLoadign ?
-      <div class={'cards'}>
+      <div className={'cards'}>
         {Array(5).fill().map((d, i) => (
           <LoadingCard></LoadingCard>
         ))}

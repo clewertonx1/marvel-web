@@ -2,7 +2,7 @@ import React from "react"
 import ContentLoader from "react-content-loader"
 
 const LoadingCard = (props) => (
-  <div class={"card"}>   
+  <div className={"card"}>   
     <ContentLoader 
       speed={2}
       width={270}

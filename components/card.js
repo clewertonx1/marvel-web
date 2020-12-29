@@ -2,7 +2,7 @@ import React from "react"
 import Link from 'next/link'
 
 const Card = ({data}) => (
-    <div class={"card"}>   
+    <div className={"card"}>   
         <img src={`${data.thumbnail.path}/standard_fantastic.${data.thumbnail.extension}`}></img>
         <div id={"descritpionDiv"}>
             <p id={"lastModified"}>{data.modified.substring(0, 10)}</p>

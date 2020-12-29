@@ -85,20 +85,17 @@
 .search{
     display: flex;
     margin-top: 2%; 
-   
     display: flex;
-    padding: 0px;
-       
+    padding: 0px;     
     height: 5%;
     border-radius: 8px;
     flex-direction: row;
     justify-content: center;
     align-items: center;
    
-    
    
 }
-.input{
+#inputSearch{
     
     flex: 1;
     height: 100%;
