@@ -43,6 +43,7 @@
 
 .main{
     display: flex;
+    flex: 1;
     flex-direction: row;
     overflow: auto;
     height: 100vh;
@@ -83,29 +84,32 @@
 
 .search{
     display: flex;
+    margin-top: 2%; 
+   
+    display: flex;
     padding: 0px;
-    margin-top: 2%;    
+       
     height: 5%;
-    border-radius: 10px;
-    border-radius: 10px;   
+    border-radius: 8px;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border-style: solid;
-    border-color: white;
+   
+    
    
 }
 .input{
     
-
+    flex: 1;
     height: 100%;
     box-shadow: 0 0 0 0;
     outline: 0;
-    margin-right: 10px;
     text-align: center;
     font-size: 20px;
-    background-color :white;
+    background-color: white;
     border-style: hidden;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
 
 }
 .input:focus{
@@ -114,15 +118,17 @@
 
 
 .iconDivSearch{
-    border-radius: 10px;
 
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
     display: flex;
+    flex: 1;
     height: 100%;
     width: 50px;
     justify-content: center;
     align-items: center;
-    background-color :#f71b39; 
-   
+
+    background-color: white;
     
     
 }
