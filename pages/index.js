@@ -3,7 +3,7 @@ import {useState, useEffect, useRef}from 'react'
 import getData from '../service/api'
 import LoadingCard from '../components/loandig'
 import Card from '../components/card'
-
+import InputSearch from '../components/inputSearch'
 
 export default function Home() {
 
@@ -50,6 +50,7 @@ export default function Home() {
 
   return (
     <div className={'main'}>
+      <InputSearch></InputSearch>
       <div class={'cards'}>
         {data.map((data, index) => (
           <Card data={data}/>

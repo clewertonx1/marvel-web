@@ -48,11 +48,7 @@
     height: 100vh;
     flex-wrap: wrap;
     background-color: #f71b39;
-    margin: 20;
     justify-content: center;
-    
-
- 
 }
 .cards{
     display: flex;
@@ -85,4 +81,22 @@
     margin: 10px;
 }
 
+.search{
+    flex: 0.25;
+    margin: 2%;
+    margin-left:auto;
+    margin-right: 8%;
+    height: 50px;
+    border-radius: 10px;
+    border-width: 0;
+    background-color: white;
+    align-self: flex-end;
+    
+}
 
+.search:focus{
+   
+    box-shadow: 0 0 0 0;
+    outline: 0;
+    border: 0;
+}
