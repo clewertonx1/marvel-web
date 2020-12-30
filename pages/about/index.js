@@ -1,7 +1,7 @@
 
 import {useState, useEffect} from 'react'
 import { useRouter } from 'next/router'
-import getData from '../../service/api'
+
 export default function Home() {
 
     const [data, setData] = useState([])
@@ -12,19 +12,18 @@ export default function Home() {
         
         console.log(id)
         async function setDataState(){
-          setData(await getData(10, id))
-    
+          console.log("aaaaa")
         }
         
         setDataState()
-        console.log("aaaa", data.title)
+       
     
       },[])
 
     
     return (
         <div>
-           
+           <h1>In production</h1>
         </div>
     )
 }

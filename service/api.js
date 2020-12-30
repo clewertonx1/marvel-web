@@ -10,7 +10,6 @@ const hash =  gerarHash(ts + privateApiKey + publicApiKey)
 
 const searchHeros = async (offset) => {
     const url = `https://gateway.marvel.com/v1/public/characters?&ts=${ts}&apikey=${publicApiKey}&hash=${hash}&offset=${offset}&limit=20`  
-    console.log(url)
     const response = await getData(url)
     return response
   }
@@ -18,14 +17,12 @@ const searchHeros = async (offset) => {
   const serachHerosByName = async (offset, name) => { 
     const url = `https://gateway.marvel.com/v1/public/characters?&ts=${ts}&apikey=${publicApiKey}&hash=${hash}&offset=${offset}&limit=20&nameStartsWith=${name}`  
     const response = await getData(url)
-    console.log(url)
     return response
   }
   searchHeros()
 
 async function getData(url){
   
-
     const respose = await axios.get(url).then(response =>{
         const data = response.data.data.results
         return data
