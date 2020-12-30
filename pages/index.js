@@ -22,6 +22,8 @@ export default function Home() {
 
   const schrollObserve = useRef()
 
+  const [noMoreData, setNoMoreData] = useState(false)
+
   useEffect(() => {
     const intersectionObserver = new IntersectionObserver((entries => {
       const radio = entries[0].intersectionRatio
@@ -34,36 +36,49 @@ export default function Home() {
       intersectionObserver.disconnect()
     }
   },[])
-  
-  useEffect(() => {
-    async function teste(){
-      const response = await searchHeros(offset)
-      return response
-    }
-    if(schrollRadio > 0 && data != []){
-      setShowLoading(true)
-     
-      console.log( teste())
-      nextPage()
-    }
-    
-      
-  
-  },[schrollRadio])
-
-  useEffect(() => {
-    if(inputSearchValue != ""){
-      setOffset(0)
-      setShowLoading(true)
-      const name = inputSearchValue
-      const response = serachHerosByName(offset, name)
-    }
-
-  },[inputSearchValue])
 
   function nextPage(){
     setOffset(offset + 20)
   }
+   const handleWithSchrollRadio = async () =>{
+    if(schrollRadio > 0 && data != [] && noMoreData != true){
+      
+      setShowLoading(true)
+      nextPage()
+      let response = []
+      const heroName = inputSearchValue
+      if(heroName != ""){
+        response = await serachHerosByName(offset, heroName)
+        if(response = []){
+          setNoMoreData(true)
+        }
+      }else{
+        response = await searchHeros(offset, heroName)
+      } 
+      setData(data.concat(response))
+      setShowLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    handleWithSchrollRadio() 
+  },[schrollRadio])
+
+  const handleWithInputSearch = async () => {
+    if(inputSearchValue != ""){
+      setShowLoading(false)
+      setOffset(0)
+      const heroName = inputSearchValue
+      const response = await serachHerosByName(offset, heroName)
+      setData(response)
+    }
+  }
+
+  useEffect(() => {
+    handleWithInputSearch()
+  },[inputSearchValue])
+
+ 
 
   return (
     <div className={'main'}>

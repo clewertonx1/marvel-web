@@ -18,6 +18,7 @@ const searchHeros = async (offset) => {
   const serachHerosByName = async (offset, name) => { 
     const url = `https://gateway.marvel.com/v1/public/characters?&ts=${ts}&apikey=${publicApiKey}&hash=${hash}&offset=${offset}&limit=20&nameStartsWith=${name}`  
     const response = await getData(url)
+    console.log(url)
     return response
   }
   searchHeros()
