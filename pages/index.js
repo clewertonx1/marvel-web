@@ -41,6 +41,7 @@ export default function Home() {
     setOffset(offset + 20)
   }
    const handleWithSchrollRadio = async () =>{
+     console.log("aaa")
     if(schrollRadio > 0 && data != [] && noMoreData != true){
       
       setShowLoading(true)
@@ -97,7 +98,7 @@ export default function Home() {
       :
       null
       }
-      <div ref={schrollObserve}></div>    
+      <div ref={schrollObserve} id={"schrollObserve"}></div>    
     </div>
   )
 }
