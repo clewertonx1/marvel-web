@@ -83,7 +83,6 @@ export default function Home() {
 
   return (
     <div className={'main'}>
-      <InputSearch setInputSearchValue={setInputSearchValue} inputSearchValue={inputSearchValue}></InputSearch>
       <div className={'cards'}>
         {data.map((data, index) => (
           <Card data={data}/>
